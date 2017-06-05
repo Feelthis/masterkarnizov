@@ -1339,820 +1339,820 @@ window.width = jQuery(window).width(), jQuery(window).ready(function() {
         jQuery("#preloader").remove()
     })
 });
-var _arr = {};
-/pofweb/.test(self.location.href) || /tstrap/.test(self.location.href) || (window.location = "http://www.stepofweb.com/templates.html"),
-    function(a) {
-        function b(a, b) {
-            return a.toFixed(b.decimals)
-        }
-        a.fn.countTo = function(b) {
-            return b = b || {}, jQuery(this).each(function() {
-                function k() {
-                    i += e, h++, l(i), "function" == typeof c.onUpdate && c.onUpdate.call(f, i), h >= d && (g.removeData("countTo"), clearInterval(j.interval), i = c.to, "function" == typeof c.onComplete && c.onComplete.call(f, i))
-                }
-
-                function l(a) {
-                    var b = c.formatter.call(f, a, c);
-                    g.html(b)
-                }
-                var c = jQuery.extend({}, a.fn.countTo.defaults, {
-                        from: jQuery(this).data("from"),
-                        to: jQuery(this).data("to"),
-                        speed: jQuery(this).data("speed"),
-                        refreshInterval: jQuery(this).data("refresh-interval"),
-                        decimals: jQuery(this).data("decimals")
-                    }, b),
-                    d = Math.ceil(c.speed / c.refreshInterval),
-                    e = (c.to - c.from) / d,
-                    f = this,
-                    g = jQuery(this),
-                    h = 0,
-                    i = c.from,
-                    j = g.data("countTo") || {};
-                g.data("countTo", j), j.interval && clearInterval(j.interval), j.interval = setInterval(k, c.refreshInterval), l(i)
-            })
-        }, a.fn.countTo.defaults = {
-            from: 0,
-            to: 0,
-            speed: 1e3,
-            refreshInterval: 100,
-            decimals: 0,
-            formatter: b,
-            onUpdate: null,
-            onComplete: null
-        }
-    }(jQuery),
-    function(a) {
-        a.extend({
-            browserDetect: function() {
-                var a = navigator.userAgent,
-                    b = a.toLowerCase(),
-                    d = function(a) {
-                        return b.indexOf(a) > -1
-                    },
-                    e = "gecko",
-                    f = "webkit",
-                    g = "safari",
-                    h = "opera",
-                    i = document.documentElement,
-                    j = [!/opera|webtv/i.test(b) && /msie\s(\d)/.test(b) ? "ie ie" + parseFloat(navigator.appVersion.split("MSIE")[1]) : d("firefox/2") ? e + " ff2" : d("firefox/3.5") ? e + " ff3 ff3_5" : d("firefox/3") ? e + " ff3" : d("gecko/") ? e : d("opera") ? h + (/version\/(\d+)/.test(b) ? " " + h + RegExp.jQuery1 : /opera(\s|\/)(\d+)/.test(b) ? " " + h + RegExp.jQuery2 : "") : d("konqueror") ? "konqueror" : d("chrome") ? f + " chrome" : d("iron") ? f + " iron" : d("applewebkit/") ? f + " " + g + (/version\/(\d+)/.test(b) ? " " + g + RegExp.jQuery1 : "") : d("mozilla/") ? e : "", d("j2me") ? "mobile" : d("iphone") ? "iphone" : d("ipod") ? "ipod" : d("mac") ? "mac" : d("darwin") ? "mac" : d("webtv") ? "webtv" : d("win") ? "win" : d("freebsd") ? "freebsd" : d("x11") || d("linux") ? "linux" : "", "js"];
-                c = j.join(" "), i.className += " " + c;
-                var k = !window.ActiveXObject && "ActiveXObject" in window;
-                if (k) return void jQuery("html").removeClass("gecko").addClass("ie ie11")
-            }
-        })
-    }(jQuery),
-    function(a) {
-        a.fn.appear = function(b, c) {
-            var d = a.extend({
-                data: void 0,
-                one: !0,
-                accX: 0,
-                accY: 0
-            }, c);
-            return this.each(function() {
-                var c = a(this);
-                if (c.appeared = !1, !b) return void c.trigger("appear", d.data);
-                var e = a(window),
-                    f = function() {
-                        if (!c.is(":visible")) return void(c.appeared = !1);
-                        var a = e.scrollLeft(),
-                            b = e.scrollTop(),
-                            f = c.offset(),
-                            g = f.left,
-                            h = f.top,
-                            i = d.accX,
-                            j = d.accY,
-                            k = c.height(),
-                            l = e.height(),
-                            m = c.width(),
-                            n = e.width();
-                        h + k + j >= b && h <= b + l + j && g + m + i >= a && g <= a + n + i ? c.appeared || c.trigger("appear", d.data) : c.appeared = !1
-                    },
-                    g = function() {
-                        if (c.appeared = !0, d.one) {
-                            e.unbind("scroll", f);
-                            var g = a.inArray(f, a.fn.appear.checks);
-                            g >= 0 && a.fn.appear.checks.splice(g, 1)
-                        }
-                        b.apply(this, arguments)
-                    };
-                d.one ? c.one("appear", d.data, g) : c.bind("appear", d.data, g), e.scroll(f), a.fn.appear.checks.push(f), f()
-            })
-        }, a.extend(a.fn.appear, {
-            checks: [],
-            timeout: null,
-            checkAll: function() {
-                var b = a.fn.appear.checks.length;
-                if (b > 0)
-                    for (; b--;) a.fn.appear.checks[b]()
-            },
-            run: function() {
-                a.fn.appear.timeout && clearTimeout(a.fn.appear.timeout), a.fn.appear.timeout = setTimeout(a.fn.appear.checkAll, 20)
-            }
-        }), a.each(["append", "prepend", "after", "before", "attr", "removeAttr", "addClass", "removeClass", "toggleClass", "remove", "css", "show", "hide"], function(b, c) {
-            var d = a.fn[c];
-            d && (a.fn[c] = function() {
-                var b = d.apply(this, arguments);
-                return a.fn.appear.run(), b
-            })
-        })
-    }(jQuery),
-    function(a) {
-        var b = a(window),
-            c = b.height();
-        b.resize(function() {
-            c = b.height()
-        }), a.fn.parallax = function(d, e, f) {
-            function k() {
-                g.each(function() {
-                    i = g.offset().top
-                }), h = f ? function(a) {
-                        return a.outerHeight(!0)
-                    } : function(a) {
-                        return a.height()
-                    }, (arguments.length < 1 || null === d) && (d = "50%"), (arguments.length < 2 || null === e) && (e = .5), (arguments.length < 3 || null === f) && (f = !0);
-                var j = b.scrollTop();
-                g.each(function() {
-                    var b = a(this),
-                        f = b.offset().top,
-                        k = h(b);
-                    f + k < j || f > j + c || g.css("backgroundPosition", d + " " + Math.round((i - j) * e) + "px")
-                })
-            }
-            var h, i, g = a(this);
-            b.bind("scroll", k).resize(k), k()
-        }
-    }(jQuery), jQuery.easing.jswing = jQuery.easing.swing, jQuery.extend(jQuery.easing, {
-    def: "easeOutQuad",
-    swing: function(a, b, c, d, e) {
-        return jQuery.easing[jQuery.easing.def](a, b, c, d, e)
-    },
-    easeInQuad: function(a, b, c, d, e) {
-        return d * (b /= e) * b + c
-    },
-    easeOutQuad: function(a, b, c, d, e) {
-        return -d * (b /= e) * (b - 2) + c
-    },
-    easeInOutQuad: function(a, b, c, d, e) {
-        return (b /= e / 2) < 1 ? d / 2 * b * b + c : -d / 2 * (--b * (b - 2) - 1) + c
-    },
-    easeInCubic: function(a, b, c, d, e) {
-        return d * (b /= e) * b * b + c
-    },
-    easeOutCubic: function(a, b, c, d, e) {
-        return d * ((b = b / e - 1) * b * b + 1) + c
-    },
-    easeInOutCubic: function(a, b, c, d, e) {
-        return (b /= e / 2) < 1 ? d / 2 * b * b * b + c : d / 2 * ((b -= 2) * b * b + 2) + c
-    },
-    easeInQuart: function(a, b, c, d, e) {
-        return d * (b /= e) * b * b * b + c
-    },
-    easeOutQuart: function(a, b, c, d, e) {
-        return -d * ((b = b / e - 1) * b * b * b - 1) + c
-    },
-    easeInOutQuart: function(a, b, c, d, e) {
-        return (b /= e / 2) < 1 ? d / 2 * b * b * b * b + c : -d / 2 * ((b -= 2) * b * b * b - 2) + c
-    },
-    easeInQuint: function(a, b, c, d, e) {
-        return d * (b /= e) * b * b * b * b + c
-    },
-    easeOutQuint: function(a, b, c, d, e) {
-        return d * ((b = b / e - 1) * b * b * b * b + 1) + c
-    },
-    easeInOutQuint: function(a, b, c, d, e) {
-        return (b /= e / 2) < 1 ? d / 2 * b * b * b * b * b + c : d / 2 * ((b -= 2) * b * b * b * b + 2) + c
-    },
-    easeInSine: function(a, b, c, d, e) {
-        return -d * Math.cos(b / e * (Math.PI / 2)) + d + c
-    },
-    easeOutSine: function(a, b, c, d, e) {
-        return d * Math.sin(b / e * (Math.PI / 2)) + c
-    },
-    easeInOutSine: function(a, b, c, d, e) {
-        return -d / 2 * (Math.cos(Math.PI * b / e) - 1) + c
-    },
-    easeInExpo: function(a, b, c, d, e) {
-        return 0 == b ? c : d * Math.pow(2, 10 * (b / e - 1)) + c
-    },
-    easeOutExpo: function(a, b, c, d, e) {
-        return b == e ? c + d : d * (-Math.pow(2, -10 * b / e) + 1) + c
-    },
-    easeInOutExpo: function(a, b, c, d, e) {
-        return 0 == b ? c : b == e ? c + d : (b /= e / 2) < 1 ? d / 2 * Math.pow(2, 10 * (b - 1)) + c : d / 2 * (-Math.pow(2, -10 * --b) + 2) + c
-    },
-    easeInCirc: function(a, b, c, d, e) {
-        return -d * (Math.sqrt(1 - (b /= e) * b) - 1) + c
-    },
-    easeOutCirc: function(a, b, c, d, e) {
-        return d * Math.sqrt(1 - (b = b / e - 1) * b) + c
-    },
-    easeInOutCirc: function(a, b, c, d, e) {
-        return (b /= e / 2) < 1 ? -d / 2 * (Math.sqrt(1 - b * b) - 1) + c : d / 2 * (Math.sqrt(1 - (b -= 2) * b) + 1) + c
-    },
-    easeInElastic: function(a, b, c, d, e) {
-        var f = 1.70158,
-            g = 0,
-            h = d;
-        if (0 == b) return c;
-        if (1 == (b /= e)) return c + d;
-        if (g || (g = .3 * e), h < Math.abs(d)) {
-            h = d;
-            var f = g / 4
-        } else var f = g / (2 * Math.PI) * Math.asin(d / h);
-        return -(h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g)) + c
-    },
-    easeOutElastic: function(a, b, c, d, e) {
-        var f = 1.70158,
-            g = 0,
-            h = d;
-        if (0 == b) return c;
-        if (1 == (b /= e)) return c + d;
-        if (g || (g = .3 * e), h < Math.abs(d)) {
-            h = d;
-            var f = g / 4
-        } else var f = g / (2 * Math.PI) * Math.asin(d / h);
-        return h * Math.pow(2, -10 * b) * Math.sin((b * e - f) * (2 * Math.PI) / g) + d + c
-    },
-    easeInOutElastic: function(a, b, c, d, e) {
-        var f = 1.70158,
-            g = 0,
-            h = d;
-        if (0 == b) return c;
-        if (2 == (b /= e / 2)) return c + d;
-        if (g || (g = e * (.3 * 1.5)), h < Math.abs(d)) {
-            h = d;
-            var f = g / 4
-        } else var f = g / (2 * Math.PI) * Math.asin(d / h);
-        return b < 1 ? -.5 * (h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g)) + c : h * Math.pow(2, -10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g) * .5 + d + c
-    },
-    easeInBack: function(a, b, c, d, e, f) {
-        return void 0 == f && (f = 1.70158), d * (b /= e) * b * ((f + 1) * b - f) + c
-    },
-    easeOutBack: function(a, b, c, d, e, f) {
-        return void 0 == f && (f = 1.70158), d * ((b = b / e - 1) * b * ((f + 1) * b + f) + 1) + c
-    },
-    easeInOutBack: function(a, b, c, d, e, f) {
-        return void 0 == f && (f = 1.70158), (b /= e / 2) < 1 ? d / 2 * (b * b * (((f *= 1.525) + 1) * b - f)) + c : d / 2 * ((b -= 2) * b * (((f *= 1.525) + 1) * b + f) + 2) + c
-    },
-    easeInBounce: function(a, b, c, d, e) {
-        return d - jQuery.easing.easeOutBounce(a, e - b, 0, d, e) + c
-    },
-    easeOutBounce: function(a, b, c, d, e) {
-        return (b /= e) < 1 / 2.75 ? d * (7.5625 * b * b) + c : b < 2 / 2.75 ? d * (7.5625 * (b -= 1.5 / 2.75) * b + .75) + c : b < 2.5 / 2.75 ? d * (7.5625 * (b -= 2.25 / 2.75) * b + .9375) + c : d * (7.5625 * (b -= 2.625 / 2.75) * b + .984375) + c
-    },
-    easeInOutBounce: function(a, b, c, d, e) {
-        return b < e / 2 ? .5 * jQuery.easing.easeInBounce(a, 2 * b, 0, d, e) + c : .5 * jQuery.easing.easeOutBounce(a, 2 * b - e, 0, d, e) + .5 * d + c
-    }
-}),
-    function() {
-        var a, b, c, d, e, f = function(a, b) {
-                return function() {
-                    return a.apply(b, arguments)
-                }
-            },
-            g = [].indexOf || function(a) {
-                    for (var b = 0, c = this.length; c > b; b++)
-                        if (b in this && this[b] === a) return b;
-                    return -1
-                };
-        b = function() {
-            function a() {}
-            return a.prototype.extend = function(a, b) {
-                var c, d;
-                for (c in b) d = b[c], null == a[c] && (a[c] = d);
-                return a
-            }, a.prototype.isMobile = function(a) {
-                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(a)
-            }, a.prototype.addEvent = function(a, b, c) {
-                return null != a.addEventListener ? a.addEventListener(b, c, !1) : null != a.attachEvent ? a.attachEvent("on" + b, c) : a[b] = c
-            }, a.prototype.removeEvent = function(a, b, c) {
-                return null != a.removeEventListener ? a.removeEventListener(b, c, !1) : null != a.detachEvent ? a.detachEvent("on" + b, c) : delete a[b]
-            }, a.prototype.innerHeight = function() {
-                return "innerHeight" in window ? window.innerHeight : document.documentElement.clientHeight
-            }, a
-        }(), c = this.WeakMap || this.MozWeakMap || (c = function() {
-                function a() {
-                    this.keys = [], this.values = []
-                }
-                return a.prototype.get = function(a) {
-                    var b, c, d, e, f;
-                    for (f = this.keys, b = d = 0, e = f.length; e > d; b = ++d)
-                        if (c = f[b], c === a) return this.values[b]
-                }, a.prototype.set = function(a, b) {
-                    var c, d, e, f, g;
-                    for (g = this.keys, c = e = 0, f = g.length; f > e; c = ++e)
-                        if (d = g[c], d === a) return void(this.values[c] = b);
-                    return this.keys.push(a), this.values.push(b)
-                }, a
-            }()), a = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (a = function() {
-                function a() {
-                    "undefined" != typeof console && null !== console && console.warn("MutationObserver is not supported by your browser."), "undefined" != typeof console && null !== console && console.warn("WOW.js cannot detect dom mutations, please call .sync() after loading new content.")
-                }
-                return a.notSupported = !0, a.prototype.observe = function() {}, a
-            }()), d = this.getComputedStyle || function(a) {
-                return this.getPropertyValue = function(b) {
-                    var c;
-                    return "float" === b && (b = "styleFloat"), e.test(b) && b.replace(e, function(a, b) {
-                        return b.toUpperCase()
-                    }), (null != (c = a.currentStyle) ? c[b] : void 0) || null
-                }, this
-            }, e = /(\-([a-z]){1})/g, this.WOW = function() {
-            function e(a) {
-                null == a && (a = {}), this.scrollCallback = f(this.scrollCallback, this), this.scrollHandler = f(this.scrollHandler, this), this.start = f(this.start, this), this.scrolled = !0, this.config = this.util().extend(a, this.defaults), this.animationNameCache = new c
-            }
-            return e.prototype.defaults = {
-                boxClass: "wow",
-                animateClass: "animated",
-                offset: 0,
-                mobile: !0,
-                live: !0,
-                callback: null
-            }, e.prototype.init = function() {
-                var a;
-                return this.element = window.document.documentElement, "interactive" === (a = document.readyState) || "complete" === a ? this.start() : this.util().addEvent(document, "DOMContentLoaded", this.start), this.finished = []
-            }, e.prototype.start = function() {
-                var b, c, d, e;
-                if (this.stopped = !1, this.boxes = function() {
-                        var a, c, d, e;
-                        for (d = this.element.querySelectorAll("." + this.config.boxClass), e = [], a = 0, c = d.length; c > a; a++) b = d[a], e.push(b);
-                        return e
-                    }.call(this), this.all = function() {
-                        var a, c, d, e;
-                        for (d = this.boxes, e = [], a = 0, c = d.length; c > a; a++) b = d[a], e.push(b);
-                        return e
-                    }.call(this), this.boxes.length)
-                    if (this.disabled()) this.resetStyle();
-                    else
-                        for (e = this.boxes, c = 0, d = e.length; d > c; c++) b = e[c], this.applyStyle(b, !0);
-                return this.disabled() || (this.util().addEvent(window, "scroll", this.scrollHandler), this.util().addEvent(window, "resize", this.scrollHandler), this.interval = setInterval(this.scrollCallback, 50)), this.config.live ? new a(function(a) {
-                        return function(b) {
-                            var c, d, e, f, g;
-                            for (g = [], e = 0, f = b.length; f > e; e++) d = b[e], g.push(function() {
-                                var a, b, e, f;
-                                for (e = d.addedNodes || [], f = [], a = 0, b = e.length; b > a; a++) c = e[a], f.push(this.doSync(c));
-                                return f
-                            }.call(a));
-                            return g
-                        }
-                    }(this)).observe(document.body, {
-                        childList: !0,
-                        subtree: !0
-                    }) : void 0
-            }, e.prototype.stop = function() {
-                return this.stopped = !0, this.util().removeEvent(window, "scroll", this.scrollHandler), this.util().removeEvent(window, "resize", this.scrollHandler), null != this.interval ? clearInterval(this.interval) : void 0
-            }, e.prototype.sync = function() {
-                return a.notSupported ? this.doSync(this.element) : void 0
-            }, e.prototype.doSync = function(a) {
-                var b, c, d, e, f;
-                if (null == a && (a = this.element), 1 === a.nodeType) {
-                    for (a = a.parentNode || a, e = a.querySelectorAll("." + this.config.boxClass), f = [], c = 0, d = e.length; d > c; c++) b = e[c], g.call(this.all, b) < 0 ? (this.boxes.push(b), this.all.push(b), this.stopped || this.disabled() ? this.resetStyle() : this.applyStyle(b, !0), f.push(this.scrolled = !0)) : f.push(void 0);
-                    return f
-                }
-            }, e.prototype.show = function(a) {
-                return this.applyStyle(a), a.className = "" + a.className + " " + this.config.animateClass, null != this.config.callback ? this.config.callback(a) : void 0
-            }, e.prototype.applyStyle = function(a, b) {
-                var c, d, e;
-                return d = a.getAttribute("data-wow-duration"), c = a.getAttribute("data-wow-delay"), e = a.getAttribute("data-wow-iteration"), this.animate(function(f) {
-                    return function() {
-                        return f.customStyle(a, b, d, c, e)
-                    }
-                }(this))
-            }, e.prototype.animate = function() {
-                return "requestAnimationFrame" in window ? function(a) {
-                        return window.requestAnimationFrame(a)
-                    } : function(a) {
-                        return a()
-                    }
-            }(), e.prototype.resetStyle = function() {
-                var a, b, c, d, e;
-                for (d = this.boxes, e = [], b = 0, c = d.length; c > b; b++) a = d[b], e.push(a.style.visibility = "visible");
-                return e
-            }, e.prototype.customStyle = function(a, b, c, d, e) {
-                return b && this.cacheAnimationName(a), a.style.visibility = b ? "hidden" : "visible", c && this.vendorSet(a.style, {
-                    animationDuration: c
-                }), d && this.vendorSet(a.style, {
-                    animationDelay: d
-                }), e && this.vendorSet(a.style, {
-                    animationIterationCount: e
-                }), this.vendorSet(a.style, {
-                    animationName: b ? "none" : this.cachedAnimationName(a)
-                }), a
-            }, e.prototype.vendors = ["moz", "webkit"], e.prototype.vendorSet = function(a, b) {
-                var c, d, e, f;
-                f = [];
-                for (c in b) d = b[c], a["" + c] = d, f.push(function() {
-                    var b, f, g, h;
-                    for (g = this.vendors, h = [], b = 0, f = g.length; f > b; b++) e = g[b], h.push(a["" + e + c.charAt(0).toUpperCase() + c.substr(1)] = d);
-                    return h
-                }.call(this));
-                return f
-            }, e.prototype.vendorCSS = function(a, b) {
-                var c, e, f, g, h, i;
-                for (e = d(a), c = e.getPropertyCSSValue(b), i = this.vendors, g = 0, h = i.length; h > g; g++) f = i[g], c = c || e.getPropertyCSSValue("-" + f + "-" + b);
-                return c
-            }, e.prototype.animationName = function(a) {
-                var b;
-                try {
-                    b = this.vendorCSS(a, "animation-name").cssText
-                } catch (c) {
-                    b = d(a).getPropertyValue("animation-name")
-                }
-                return "none" === b ? "" : b
-            }, e.prototype.cacheAnimationName = function(a) {
-                return this.animationNameCache.set(a, this.animationName(a))
-            }, e.prototype.cachedAnimationName = function(a) {
-                return this.animationNameCache.get(a)
-            }, e.prototype.scrollHandler = function() {
-                return this.scrolled = !0
-            }, e.prototype.scrollCallback = function() {
-                var a;
-                return !this.scrolled || (this.scrolled = !1, this.boxes = function() {
-                    var b, c, d, e;
-                    for (d = this.boxes, e = [], b = 0, c = d.length; c > b; b++) a = d[b], a && (this.isVisible(a) ? this.show(a) : e.push(a));
-                    return e
-                }.call(this), this.boxes.length || this.config.live) ? void 0 : this.stop()
-            }, e.prototype.offsetTop = function(a) {
-                for (var b; void 0 === a.offsetTop;) a = a.parentNode;
-                for (b = a.offsetTop; a = a.offsetParent;) b += a.offsetTop;
-                return b
-            }, e.prototype.isVisible = function(a) {
-                var b, c, d, e, f;
-                return c = a.getAttribute("data-wow-offset") || this.config.offset, f = window.pageYOffset, e = f + Math.min(this.element.clientHeight, this.util().innerHeight()) - c, d = this.offsetTop(a), b = d + a.clientHeight, e >= d && b >= f
-            }, e.prototype.util = function() {
-                return null != this._util ? this._util : this._util = new b
-            }, e.prototype.disabled = function() {
-                return !this.config.mobile && this.util().isMobile(navigator.userAgent)
-            }, e
-        }()
-    }.call(this), window.Modernizr = function(a, b, c) {
-    function d(a) {
-        q.cssText = a
-    }
-
-    function f(a, b) {
-        return typeof a === b
-    }
-
-    function g(a, b) {
-        return !!~("" + a).indexOf(b)
-    }
-
-    function h(a, b) {
-        for (var d in a) {
-            var e = a[d];
-            if (!g(e, "-") && q[e] !== c) return "pfx" != b || e
-        }
-        return !1
-    }
-
-    function i(a, b, d) {
-        for (var e in a) {
-            var g = b[a[e]];
-            if (g !== c) return d === !1 ? a[e] : f(g, "function") ? g.bind(d || b) : g
-        }
-        return !1
-    }
-
-    function j(a, b, c) {
-        var d = a.charAt(0).toUpperCase() + a.slice(1),
-            e = (a + " " + v.join(d + " ") + d).split(" ");
-        return f(b, "string") || f(b, "undefined") ? h(e, b) : (e = (a + " " + w.join(d + " ") + d).split(" "), i(e, b, c))
-    }
-    var r, C, G, k = "2.7.1",
-        l = {},
-        m = !0,
-        n = b.documentElement,
-        o = "modernizr",
-        p = b.createElement(o),
-        q = p.style,
-        t = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")),
-        u = "Webkit Moz O ms",
-        v = u.split(" "),
-        w = u.toLowerCase().split(" "),
-        x = {},
-        A = [],
-        B = A.slice,
-        D = function(a, c, d, e) {
-            var f, g, h, i, j = b.createElement("div"),
-                k = b.body,
-                l = k || b.createElement("body");
-            if (parseInt(d, 10))
-                for (; d--;) h = b.createElement("div"), h.id = e ? e[d] : o + (d + 1), j.appendChild(h);
-            return f = ["&#173;", '<style id="s', o, '">', a, "</style>"].join(""), j.id = o, (k ? j : l).innerHTML += f, l.appendChild(j), k || (l.style.background = "", l.style.overflow = "hidden", i = n.style.overflow, n.style.overflow = "hidden", n.appendChild(l)), g = c(j, a), k ? j.parentNode.removeChild(j) : (l.parentNode.removeChild(l), n.style.overflow = i), !!g
-        },
-        E = function() {
-            function a(a, e) {
-                e = e || b.createElement(d[a] || "div"), a = "on" + a;
-                var g = a in e;
-                return g || (e.setAttribute || (e = b.createElement("div")), e.setAttribute && e.removeAttribute && (e.setAttribute(a, ""), g = f(e[a], "function"), f(e[a], "undefined") || (e[a] = c), e.removeAttribute(a))), e = null, g
-            }
-            var d = {
-                select: "input",
-                change: "input",
-                submit: "form",
-                reset: "form",
-                error: "img",
-                load: "img",
-                abort: "img"
-            };
-            return a
-        }(),
-        F = {}.hasOwnProperty;
-    G = f(F, "undefined") || f(F.call, "undefined") ? function(a, b) {
-            return b in a && f(a.constructor.prototype[b], "undefined")
-        } : function(a, b) {
-            return F.call(a, b)
-        }, Function.prototype.bind || (Function.prototype.bind = function(a) {
-        var b = this;
-        if ("function" != typeof b) throw new TypeError;
-        var c = B.call(arguments, 1),
-            d = function() {
-                if (this instanceof d) {
-                    var e = function() {};
-                    e.prototype = b.prototype;
-                    var f = new e,
-                        g = b.apply(f, c.concat(B.call(arguments)));
-                    return Object(g) === g ? g : f
-                }
-                return b.apply(a, c.concat(B.call(arguments)))
-            };
-        return d
-    }), x.touch = function() {
-        var c;
-        return "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : D(["@media (", t.join("touch-enabled),("), o, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function(a) {
-                c = 9 === a.offsetTop
-            }), c
-    }, x.csstransforms3d = function() {
-        var a = !!j("perspective");
-        return a && "webkitPerspective" in n.style && D("@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}", function(b, c) {
-            a = 9 === b.offsetLeft && 3 === b.offsetHeight
-        }), a
-    }, x.csstransitions = function() {
-        return j("transition")
-    }, x.video = function() {
-        var a = b.createElement("video"),
-            c = !1;
-        try {
-            (c = !!a.canPlayType) && (c = new Boolean(c), c.ogg = a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ""), c.h264 = a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, ""), c.webm = a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, ""))
-        } catch (a) {}
-        return c
-    };
-    for (var H in x) G(x, H) && (C = H.toLowerCase(), l[C] = x[H](), A.push((l[C] ? "" : "no-") + C));
-    return l.addTest = function(a, b) {
-        if ("object" == typeof a)
-            for (var d in a) G(a, d) && l.addTest(d, a[d]);
-        else {
-            if (a = a.toLowerCase(), l[a] !== c) return l;
-            b = "function" == typeof b ? b() : b, "undefined" != typeof m && m && (n.className += " " + (b ? "" : "no-") + a), l[a] = b
-        }
-        return l
-    }, d(""), p = r = null,
-        function(a, b) {
-            function c(a, b) {
-                var c = a.createElement("p"),
-                    d = a.getElementsByTagName("head")[0] || a.documentElement;
-                return c.innerHTML = "x<style>" + b + "</style>", d.insertBefore(c.lastChild, d.firstChild)
-            }
-
-            function d() {
-                var a = s.elements;
-                return "string" == typeof a ? a.split(" ") : a
-            }
-
-            function e(a) {
-                var b = q[a[o]];
-                return b || (b = {}, p++, a[o] = p, q[p] = b), b
-            }
-
-            function f(a, c, d) {
-                if (c || (c = b), r) return c.createElement(a);
-                d || (d = e(c));
-                var f;
-                return f = d.cache[a] ? d.cache[a].cloneNode() : m.test(a) ? (d.cache[a] = d.createElem(a)).cloneNode() : d.createElem(a), !f.canHaveChildren || l.test(a) || f.tagUrn ? f : d.frag.appendChild(f)
-            }
-
-            function g(a, c) {
-                if (a || (a = b), r) return a.createDocumentFragment();
-                c = c || e(a);
-                for (var f = c.frag.cloneNode(), g = 0, h = d(), i = h.length; g < i; g++) f.createElement(h[g]);
-                return f
-            }
-
-            function h(a, b) {
-                b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function(c) {
-                    return s.shivMethods ? f(c, a, b) : b.createElem(c)
-                }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + d().join().replace(/[\w\-]+/g, function(a) {
-                        return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'
-                    }) + ");return n}")(s, b.frag)
-            }
-
-            function i(a) {
-                a || (a = b);
-                var d = e(a);
-                return s.shivCSS && !n && !d.hasCSS && (d.hasCSS = !!c(a, "article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")), r || h(a, d), a
-            }
-            var n, r, j = "3.7.0",
-                k = a.html5 || {},
-                l = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,
-                m = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,
-                o = "_html5shiv",
-                p = 0,
-                q = {};
-            ! function() {
-                try {
-                    var a = b.createElement("a");
-                    a.innerHTML = "<xyz></xyz>", n = "hidden" in a, r = 1 == a.childNodes.length || function() {
-                            b.createElement("a");
-                            var a = b.createDocumentFragment();
-                            return "undefined" == typeof a.cloneNode || "undefined" == typeof a.createDocumentFragment || "undefined" == typeof a.createElement
-                        }()
-                } catch (a) {
-                    n = !0, r = !0
-                }
-            }();
-            var s = {
-                elements: k.elements || "abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video",
-                version: j,
-                shivCSS: k.shivCSS !== !1,
-                supportsUnknownElements: r,
-                shivMethods: k.shivMethods !== !1,
-                type: "default",
-                shivDocument: i,
-                createElement: f,
-                createDocumentFragment: g
-            };
-            a.html5 = s, i(b)
-        }(this, b), l._version = k, l._prefixes = t, l._domPrefixes = w, l._cssomPrefixes = v, l.hasEvent = E, l.testProp = function(a) {
-        return h([a])
-    }, l.testAllProps = j, l.testStyles = D, l.prefixed = function(a, b, c) {
-        return b ? j(a, b, c) : j(a, "pfx")
-    }, n.className = n.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (m ? " js " + A.join(" ") : ""), l
-}(this, this.document),
-    function(a, b, c) {
-        function d(a) {
-            return "[object Function]" == o.call(a)
-        }
-
-        function e(a) {
-            return "string" == typeof a
-        }
-
-        function f() {}
-
-        function g(a) {
-            return !a || "loaded" == a || "complete" == a || "uninitialized" == a
-        }
-
-        function h() {
-            var a = p.shift();
-            q = 1, a ? a.t ? m(function() {
-                        ("c" == a.t ? B.injectCss : B.injectJs)(a.s, 0, a.a, a.x, a.e, 1)
-                    }, 0) : (a(), h()) : q = 0
-        }
-
-        function i(a, c, d, e, f, i, j) {
-            function k(b) {
-                if (!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
-                    "img" != a && m(function() {
-                        t.removeChild(l)
-                    }, 50);
-                    for (var d in y[c]) y[c].hasOwnProperty(d) && y[c][d].onload()
-                }
-            }
-            var j = j || B.errorTimeout,
-                l = b.createElement(a),
-                o = 0,
-                r = 0,
-                u = {
-                    t: d,
-                    s: c,
-                    e: f,
-                    a: i,
-                    x: j
-                };
-            1 === y[c] && (r = 1, y[c] = []), "object" == a ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function() {
-                k.call(this, r)
-            }, p.splice(e, 0, u), "img" != a && (r || 2 === y[c] ? (t.insertBefore(l, s ? null : n), m(k, j)) : y[c].push(l))
-        }
-
-        function j(a, b, c, d, f) {
-            return q = 0, b = b || "j", e(a) ? i("c" == b ? v : u, a, b, this.i++, c, d, f) : (p.splice(this.i++, 0, a), 1 == p.length && h()), this
-        }
-
-        function k() {
-            var a = B;
-            return a.loader = {
-                load: j,
-                i: 0
-            }, a
-        }
-        var A, B, l = b.documentElement,
-            m = a.setTimeout,
-            n = b.getElementsByTagName("script")[0],
-            o = {}.toString,
-            p = [],
-            q = 0,
-            r = "MozAppearance" in l.style,
-            s = r && !!b.createRange().compareNode,
-            t = s ? l : n.parentNode,
-            l = a.opera && "[object Opera]" == o.call(a.opera),
-            l = !!b.attachEvent && !l,
-            u = r ? "object" : l ? "script" : "img",
-            v = l ? "script" : u,
-            w = Array.isArray || function(a) {
-                    return "[object Array]" == o.call(a)
-                },
-            x = [],
-            y = {},
-            z = {
-                timeout: function(a, b) {
-                    return b.length && (a.timeout = b[0]), a
-                }
-            };
-        B = function(a) {
-            function b(a) {
-                var e, f, g, a = a.split("!"),
-                    b = x.length,
-                    c = a.pop(),
-                    d = a.length,
-                    c = {
-                        url: c,
-                        origUrl: c,
-                        prefixes: a
-                    };
-                for (f = 0; f < d; f++) g = a[f].split("="), (e = z[g.shift()]) && (c = e(c, g));
-                for (f = 0; f < b; f++) c = x[f](c);
-                return c
-            }
-
-            function g(a, e, f, g, h) {
-                var i = b(a),
-                    j = i.autoCallback;
-                i.url.split(".").pop().split("?").shift(), i.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]]), i.instead ? i.instead(a, e, f, g, h) : (y[i.url] ? i.noexec = !0 : y[i.url] = 1, f.load(i.url, i.forceCSS || !i.forceJS && "css" == i.url.split(".").pop().split("?").shift() ? "c" : c, i.noexec, i.attrs, i.timeout), (d(e) || d(j)) && f.load(function() {
-                        k(), e && e(i.origUrl, h, g), j && j(i.origUrl, h, g), y[i.url] = 2
-                    })))
-            }
-
-            function h(a, b) {
-                function c(a, c) {
-                    if (a) {
-                        if (e(a)) c || (j = function() {
-                            var a = [].slice.call(arguments);
-                            k.apply(this, a), l()
-                        }), g(a, j, b, 0, h);
-                        else if (Object(a) === a)
-                            for (n in m = function() {
-                                var c, b = 0;
-                                for (c in a) a.hasOwnProperty(c) && b++;
-                                return b
-                            }(), a) a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
-                                    var a = [].slice.call(arguments);
-                                    k.apply(this, a), l()
-                                } : j[n] = function(a) {
-                                    return function() {
-                                        var b = [].slice.call(arguments);
-                                        a && a.apply(this, b), l()
-                                    }
-                                }(k[n])), g(a[n], j, b, n, h))
-                    } else !c && l()
-                }
-                var m, n, h = !!a.test,
-                    i = a.load || a.both,
-                    j = a.callback || f,
-                    k = j,
-                    l = a.complete || f;
-                c(h ? a.yep : a.nope, !!i), i && c(i)
-            }
-            var i, j, l = this.yepnope.loader;
-            if (e(a)) g(a, 0, l, 0);
-            else if (w(a))
-                for (i = 0; i < a.length; i++) j = a[i], e(j) ? g(j, 0, l, 0) : w(j) ? B(j) : Object(j) === j && h(j, l);
-            else Object(a) === a && h(a, l)
-        }, B.addPrefix = function(a, b) {
-            z[a] = b
-        }, B.addFilter = function(a) {
-            x.push(a)
-        }, B.errorTimeout = 1e4, null == b.readyState && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
-            b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-        }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
-            var l, o, k = b.createElement("script"),
-                e = e || B.errorTimeout;
-            k.src = a;
-            for (o in d) k.setAttribute(o, d[o]);
-            c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
-                !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
-            }, m(function() {
-                l || (l = 1, c(1))
-            }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
-        }, a.yepnope.injectCss = function(a, c, d, e, g, i) {
-            var j, e = b.createElement("link"),
-                c = i ? h : c || f;
-            e.href = a, e.rel = "stylesheet", e.type = "text/css";
-            for (j in d) e.setAttribute(j, d[j]);
-            g || (n.parentNode.insertBefore(e, n), m(c, 0))
-        }
-    }(this, document), Modernizr.load = function() {
-    yepnope.apply(window, [].slice.call(arguments, 0))
-};
+// var _arr = {};
+// /pofweb/.test(self.location.href) || /tstrap/.test(self.location.href) || (window.location = "http://www.stepofweb.com/templates.html"),
+//     function(a) {
+//         function b(a, b) {
+//             return a.toFixed(b.decimals)
+//         }
+//         a.fn.countTo = function(b) {
+//             return b = b || {}, jQuery(this).each(function() {
+//                 function k() {
+//                     i += e, h++, l(i), "function" == typeof c.onUpdate && c.onUpdate.call(f, i), h >= d && (g.removeData("countTo"), clearInterval(j.interval), i = c.to, "function" == typeof c.onComplete && c.onComplete.call(f, i))
+//                 }
+//
+//                 function l(a) {
+//                     var b = c.formatter.call(f, a, c);
+//                     g.html(b)
+//                 }
+//                 var c = jQuery.extend({}, a.fn.countTo.defaults, {
+//                         from: jQuery(this).data("from"),
+//                         to: jQuery(this).data("to"),
+//                         speed: jQuery(this).data("speed"),
+//                         refreshInterval: jQuery(this).data("refresh-interval"),
+//                         decimals: jQuery(this).data("decimals")
+//                     }, b),
+//                     d = Math.ceil(c.speed / c.refreshInterval),
+//                     e = (c.to - c.from) / d,
+//                     f = this,
+//                     g = jQuery(this),
+//                     h = 0,
+//                     i = c.from,
+//                     j = g.data("countTo") || {};
+//                 g.data("countTo", j), j.interval && clearInterval(j.interval), j.interval = setInterval(k, c.refreshInterval), l(i)
+//             })
+//         }, a.fn.countTo.defaults = {
+//             from: 0,
+//             to: 0,
+//             speed: 1e3,
+//             refreshInterval: 100,
+//             decimals: 0,
+//             formatter: b,
+//             onUpdate: null,
+//             onComplete: null
+//         }
+//     }(jQuery),
+//     function(a) {
+//         a.extend({
+//             browserDetect: function() {
+//                 var a = navigator.userAgent,
+//                     b = a.toLowerCase(),
+//                     d = function(a) {
+//                         return b.indexOf(a) > -1
+//                     },
+//                     e = "gecko",
+//                     f = "webkit",
+//                     g = "safari",
+//                     h = "opera",
+//                     i = document.documentElement,
+//                     j = [!/opera|webtv/i.test(b) && /msie\s(\d)/.test(b) ? "ie ie" + parseFloat(navigator.appVersion.split("MSIE")[1]) : d("firefox/2") ? e + " ff2" : d("firefox/3.5") ? e + " ff3 ff3_5" : d("firefox/3") ? e + " ff3" : d("gecko/") ? e : d("opera") ? h + (/version\/(\d+)/.test(b) ? " " + h + RegExp.jQuery1 : /opera(\s|\/)(\d+)/.test(b) ? " " + h + RegExp.jQuery2 : "") : d("konqueror") ? "konqueror" : d("chrome") ? f + " chrome" : d("iron") ? f + " iron" : d("applewebkit/") ? f + " " + g + (/version\/(\d+)/.test(b) ? " " + g + RegExp.jQuery1 : "") : d("mozilla/") ? e : "", d("j2me") ? "mobile" : d("iphone") ? "iphone" : d("ipod") ? "ipod" : d("mac") ? "mac" : d("darwin") ? "mac" : d("webtv") ? "webtv" : d("win") ? "win" : d("freebsd") ? "freebsd" : d("x11") || d("linux") ? "linux" : "", "js"];
+//                 c = j.join(" "), i.className += " " + c;
+//                 var k = !window.ActiveXObject && "ActiveXObject" in window;
+//                 if (k) return void jQuery("html").removeClass("gecko").addClass("ie ie11")
+//             }
+//         })
+//     }(jQuery),
+//     function(a) {
+//         a.fn.appear = function(b, c) {
+//             var d = a.extend({
+//                 data: void 0,
+//                 one: !0,
+//                 accX: 0,
+//                 accY: 0
+//             }, c);
+//             return this.each(function() {
+//                 var c = a(this);
+//                 if (c.appeared = !1, !b) return void c.trigger("appear", d.data);
+//                 var e = a(window),
+//                     f = function() {
+//                         if (!c.is(":visible")) return void(c.appeared = !1);
+//                         var a = e.scrollLeft(),
+//                             b = e.scrollTop(),
+//                             f = c.offset(),
+//                             g = f.left,
+//                             h = f.top,
+//                             i = d.accX,
+//                             j = d.accY,
+//                             k = c.height(),
+//                             l = e.height(),
+//                             m = c.width(),
+//                             n = e.width();
+//                         h + k + j >= b && h <= b + l + j && g + m + i >= a && g <= a + n + i ? c.appeared || c.trigger("appear", d.data) : c.appeared = !1
+//                     },
+//                     g = function() {
+//                         if (c.appeared = !0, d.one) {
+//                             e.unbind("scroll", f);
+//                             var g = a.inArray(f, a.fn.appear.checks);
+//                             g >= 0 && a.fn.appear.checks.splice(g, 1)
+//                         }
+//                         b.apply(this, arguments)
+//                     };
+//                 d.one ? c.one("appear", d.data, g) : c.bind("appear", d.data, g), e.scroll(f), a.fn.appear.checks.push(f), f()
+//             })
+//         }, a.extend(a.fn.appear, {
+//             checks: [],
+//             timeout: null,
+//             checkAll: function() {
+//                 var b = a.fn.appear.checks.length;
+//                 if (b > 0)
+//                     for (; b--;) a.fn.appear.checks[b]()
+//             },
+//             run: function() {
+//                 a.fn.appear.timeout && clearTimeout(a.fn.appear.timeout), a.fn.appear.timeout = setTimeout(a.fn.appear.checkAll, 20)
+//             }
+//         }), a.each(["append", "prepend", "after", "before", "attr", "removeAttr", "addClass", "removeClass", "toggleClass", "remove", "css", "show", "hide"], function(b, c) {
+//             var d = a.fn[c];
+//             d && (a.fn[c] = function() {
+//                 var b = d.apply(this, arguments);
+//                 return a.fn.appear.run(), b
+//             })
+//         })
+//     }(jQuery),
+//     function(a) {
+//         var b = a(window),
+//             c = b.height();
+//         b.resize(function() {
+//             c = b.height()
+//         }), a.fn.parallax = function(d, e, f) {
+//             function k() {
+//                 g.each(function() {
+//                     i = g.offset().top
+//                 }), h = f ? function(a) {
+//                         return a.outerHeight(!0)
+//                     } : function(a) {
+//                         return a.height()
+//                     }, (arguments.length < 1 || null === d) && (d = "50%"), (arguments.length < 2 || null === e) && (e = .5), (arguments.length < 3 || null === f) && (f = !0);
+//                 var j = b.scrollTop();
+//                 g.each(function() {
+//                     var b = a(this),
+//                         f = b.offset().top,
+//                         k = h(b);
+//                     f + k < j || f > j + c || g.css("backgroundPosition", d + " " + Math.round((i - j) * e) + "px")
+//                 })
+//             }
+//             var h, i, g = a(this);
+//             b.bind("scroll", k).resize(k), k()
+//         }
+//     }(jQuery), jQuery.easing.jswing = jQuery.easing.swing, jQuery.extend(jQuery.easing, {
+//     def: "easeOutQuad",
+//     swing: function(a, b, c, d, e) {
+//         return jQuery.easing[jQuery.easing.def](a, b, c, d, e)
+//     },
+//     easeInQuad: function(a, b, c, d, e) {
+//         return d * (b /= e) * b + c
+//     },
+//     easeOutQuad: function(a, b, c, d, e) {
+//         return -d * (b /= e) * (b - 2) + c
+//     },
+//     easeInOutQuad: function(a, b, c, d, e) {
+//         return (b /= e / 2) < 1 ? d / 2 * b * b + c : -d / 2 * (--b * (b - 2) - 1) + c
+//     },
+//     easeInCubic: function(a, b, c, d, e) {
+//         return d * (b /= e) * b * b + c
+//     },
+//     easeOutCubic: function(a, b, c, d, e) {
+//         return d * ((b = b / e - 1) * b * b + 1) + c
+//     },
+//     easeInOutCubic: function(a, b, c, d, e) {
+//         return (b /= e / 2) < 1 ? d / 2 * b * b * b + c : d / 2 * ((b -= 2) * b * b + 2) + c
+//     },
+//     easeInQuart: function(a, b, c, d, e) {
+//         return d * (b /= e) * b * b * b + c
+//     },
+//     easeOutQuart: function(a, b, c, d, e) {
+//         return -d * ((b = b / e - 1) * b * b * b - 1) + c
+//     },
+//     easeInOutQuart: function(a, b, c, d, e) {
+//         return (b /= e / 2) < 1 ? d / 2 * b * b * b * b + c : -d / 2 * ((b -= 2) * b * b * b - 2) + c
+//     },
+//     easeInQuint: function(a, b, c, d, e) {
+//         return d * (b /= e) * b * b * b * b + c
+//     },
+//     easeOutQuint: function(a, b, c, d, e) {
+//         return d * ((b = b / e - 1) * b * b * b * b + 1) + c
+//     },
+//     easeInOutQuint: function(a, b, c, d, e) {
+//         return (b /= e / 2) < 1 ? d / 2 * b * b * b * b * b + c : d / 2 * ((b -= 2) * b * b * b * b + 2) + c
+//     },
+//     easeInSine: function(a, b, c, d, e) {
+//         return -d * Math.cos(b / e * (Math.PI / 2)) + d + c
+//     },
+//     easeOutSine: function(a, b, c, d, e) {
+//         return d * Math.sin(b / e * (Math.PI / 2)) + c
+//     },
+//     easeInOutSine: function(a, b, c, d, e) {
+//         return -d / 2 * (Math.cos(Math.PI * b / e) - 1) + c
+//     },
+//     easeInExpo: function(a, b, c, d, e) {
+//         return 0 == b ? c : d * Math.pow(2, 10 * (b / e - 1)) + c
+//     },
+//     easeOutExpo: function(a, b, c, d, e) {
+//         return b == e ? c + d : d * (-Math.pow(2, -10 * b / e) + 1) + c
+//     },
+//     easeInOutExpo: function(a, b, c, d, e) {
+//         return 0 == b ? c : b == e ? c + d : (b /= e / 2) < 1 ? d / 2 * Math.pow(2, 10 * (b - 1)) + c : d / 2 * (-Math.pow(2, -10 * --b) + 2) + c
+//     },
+//     easeInCirc: function(a, b, c, d, e) {
+//         return -d * (Math.sqrt(1 - (b /= e) * b) - 1) + c
+//     },
+//     easeOutCirc: function(a, b, c, d, e) {
+//         return d * Math.sqrt(1 - (b = b / e - 1) * b) + c
+//     },
+//     easeInOutCirc: function(a, b, c, d, e) {
+//         return (b /= e / 2) < 1 ? -d / 2 * (Math.sqrt(1 - b * b) - 1) + c : d / 2 * (Math.sqrt(1 - (b -= 2) * b) + 1) + c
+//     },
+//     easeInElastic: function(a, b, c, d, e) {
+//         var f = 1.70158,
+//             g = 0,
+//             h = d;
+//         if (0 == b) return c;
+//         if (1 == (b /= e)) return c + d;
+//         if (g || (g = .3 * e), h < Math.abs(d)) {
+//             h = d;
+//             var f = g / 4
+//         } else var f = g / (2 * Math.PI) * Math.asin(d / h);
+//         return -(h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g)) + c
+//     },
+//     easeOutElastic: function(a, b, c, d, e) {
+//         var f = 1.70158,
+//             g = 0,
+//             h = d;
+//         if (0 == b) return c;
+//         if (1 == (b /= e)) return c + d;
+//         if (g || (g = .3 * e), h < Math.abs(d)) {
+//             h = d;
+//             var f = g / 4
+//         } else var f = g / (2 * Math.PI) * Math.asin(d / h);
+//         return h * Math.pow(2, -10 * b) * Math.sin((b * e - f) * (2 * Math.PI) / g) + d + c
+//     },
+//     easeInOutElastic: function(a, b, c, d, e) {
+//         var f = 1.70158,
+//             g = 0,
+//             h = d;
+//         if (0 == b) return c;
+//         if (2 == (b /= e / 2)) return c + d;
+//         if (g || (g = e * (.3 * 1.5)), h < Math.abs(d)) {
+//             h = d;
+//             var f = g / 4
+//         } else var f = g / (2 * Math.PI) * Math.asin(d / h);
+//         return b < 1 ? -.5 * (h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g)) + c : h * Math.pow(2, -10 * (b -= 1)) * Math.sin((b * e - f) * (2 * Math.PI) / g) * .5 + d + c
+//     },
+//     easeInBack: function(a, b, c, d, e, f) {
+//         return void 0 == f && (f = 1.70158), d * (b /= e) * b * ((f + 1) * b - f) + c
+//     },
+//     easeOutBack: function(a, b, c, d, e, f) {
+//         return void 0 == f && (f = 1.70158), d * ((b = b / e - 1) * b * ((f + 1) * b + f) + 1) + c
+//     },
+//     easeInOutBack: function(a, b, c, d, e, f) {
+//         return void 0 == f && (f = 1.70158), (b /= e / 2) < 1 ? d / 2 * (b * b * (((f *= 1.525) + 1) * b - f)) + c : d / 2 * ((b -= 2) * b * (((f *= 1.525) + 1) * b + f) + 2) + c
+//     },
+//     easeInBounce: function(a, b, c, d, e) {
+//         return d - jQuery.easing.easeOutBounce(a, e - b, 0, d, e) + c
+//     },
+//     easeOutBounce: function(a, b, c, d, e) {
+//         return (b /= e) < 1 / 2.75 ? d * (7.5625 * b * b) + c : b < 2 / 2.75 ? d * (7.5625 * (b -= 1.5 / 2.75) * b + .75) + c : b < 2.5 / 2.75 ? d * (7.5625 * (b -= 2.25 / 2.75) * b + .9375) + c : d * (7.5625 * (b -= 2.625 / 2.75) * b + .984375) + c
+//     },
+//     easeInOutBounce: function(a, b, c, d, e) {
+//         return b < e / 2 ? .5 * jQuery.easing.easeInBounce(a, 2 * b, 0, d, e) + c : .5 * jQuery.easing.easeOutBounce(a, 2 * b - e, 0, d, e) + .5 * d + c
+//     }
+// }),
+//     function() {
+//         var a, b, c, d, e, f = function(a, b) {
+//                 return function() {
+//                     return a.apply(b, arguments)
+//                 }
+//             },
+//             g = [].indexOf || function(a) {
+//                     for (var b = 0, c = this.length; c > b; b++)
+//                         if (b in this && this[b] === a) return b;
+//                     return -1
+//                 };
+//         b = function() {
+//             function a() {}
+//             return a.prototype.extend = function(a, b) {
+//                 var c, d;
+//                 for (c in b) d = b[c], null == a[c] && (a[c] = d);
+//                 return a
+//             }, a.prototype.isMobile = function(a) {
+//                 return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(a)
+//             }, a.prototype.addEvent = function(a, b, c) {
+//                 return null != a.addEventListener ? a.addEventListener(b, c, !1) : null != a.attachEvent ? a.attachEvent("on" + b, c) : a[b] = c
+//             }, a.prototype.removeEvent = function(a, b, c) {
+//                 return null != a.removeEventListener ? a.removeEventListener(b, c, !1) : null != a.detachEvent ? a.detachEvent("on" + b, c) : delete a[b]
+//             }, a.prototype.innerHeight = function() {
+//                 return "innerHeight" in window ? window.innerHeight : document.documentElement.clientHeight
+//             }, a
+//         }(), c = this.WeakMap || this.MozWeakMap || (c = function() {
+//                 function a() {
+//                     this.keys = [], this.values = []
+//                 }
+//                 return a.prototype.get = function(a) {
+//                     var b, c, d, e, f;
+//                     for (f = this.keys, b = d = 0, e = f.length; e > d; b = ++d)
+//                         if (c = f[b], c === a) return this.values[b]
+//                 }, a.prototype.set = function(a, b) {
+//                     var c, d, e, f, g;
+//                     for (g = this.keys, c = e = 0, f = g.length; f > e; c = ++e)
+//                         if (d = g[c], d === a) return void(this.values[c] = b);
+//                     return this.keys.push(a), this.values.push(b)
+//                 }, a
+//             }()), a = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (a = function() {
+//                 function a() {
+//                     "undefined" != typeof console && null !== console && console.warn("MutationObserver is not supported by your browser."), "undefined" != typeof console && null !== console && console.warn("WOW.js cannot detect dom mutations, please call .sync() after loading new content.")
+//                 }
+//                 return a.notSupported = !0, a.prototype.observe = function() {}, a
+//             }()), d = this.getComputedStyle || function(a) {
+//                 return this.getPropertyValue = function(b) {
+//                     var c;
+//                     return "float" === b && (b = "styleFloat"), e.test(b) && b.replace(e, function(a, b) {
+//                         return b.toUpperCase()
+//                     }), (null != (c = a.currentStyle) ? c[b] : void 0) || null
+//                 }, this
+//             }, e = /(\-([a-z]){1})/g, this.WOW = function() {
+//             function e(a) {
+//                 null == a && (a = {}), this.scrollCallback = f(this.scrollCallback, this), this.scrollHandler = f(this.scrollHandler, this), this.start = f(this.start, this), this.scrolled = !0, this.config = this.util().extend(a, this.defaults), this.animationNameCache = new c
+//             }
+//             return e.prototype.defaults = {
+//                 boxClass: "wow",
+//                 animateClass: "animated",
+//                 offset: 0,
+//                 mobile: !0,
+//                 live: !0,
+//                 callback: null
+//             }, e.prototype.init = function() {
+//                 var a;
+//                 return this.element = window.document.documentElement, "interactive" === (a = document.readyState) || "complete" === a ? this.start() : this.util().addEvent(document, "DOMContentLoaded", this.start), this.finished = []
+//             }, e.prototype.start = function() {
+//                 var b, c, d, e;
+//                 if (this.stopped = !1, this.boxes = function() {
+//                         var a, c, d, e;
+//                         for (d = this.element.querySelectorAll("." + this.config.boxClass), e = [], a = 0, c = d.length; c > a; a++) b = d[a], e.push(b);
+//                         return e
+//                     }.call(this), this.all = function() {
+//                         var a, c, d, e;
+//                         for (d = this.boxes, e = [], a = 0, c = d.length; c > a; a++) b = d[a], e.push(b);
+//                         return e
+//                     }.call(this), this.boxes.length)
+//                     if (this.disabled()) this.resetStyle();
+//                     else
+//                         for (e = this.boxes, c = 0, d = e.length; d > c; c++) b = e[c], this.applyStyle(b, !0);
+//                 return this.disabled() || (this.util().addEvent(window, "scroll", this.scrollHandler), this.util().addEvent(window, "resize", this.scrollHandler), this.interval = setInterval(this.scrollCallback, 50)), this.config.live ? new a(function(a) {
+//                         return function(b) {
+//                             var c, d, e, f, g;
+//                             for (g = [], e = 0, f = b.length; f > e; e++) d = b[e], g.push(function() {
+//                                 var a, b, e, f;
+//                                 for (e = d.addedNodes || [], f = [], a = 0, b = e.length; b > a; a++) c = e[a], f.push(this.doSync(c));
+//                                 return f
+//                             }.call(a));
+//                             return g
+//                         }
+//                     }(this)).observe(document.body, {
+//                         childList: !0,
+//                         subtree: !0
+//                     }) : void 0
+//             }, e.prototype.stop = function() {
+//                 return this.stopped = !0, this.util().removeEvent(window, "scroll", this.scrollHandler), this.util().removeEvent(window, "resize", this.scrollHandler), null != this.interval ? clearInterval(this.interval) : void 0
+//             }, e.prototype.sync = function() {
+//                 return a.notSupported ? this.doSync(this.element) : void 0
+//             }, e.prototype.doSync = function(a) {
+//                 var b, c, d, e, f;
+//                 if (null == a && (a = this.element), 1 === a.nodeType) {
+//                     for (a = a.parentNode || a, e = a.querySelectorAll("." + this.config.boxClass), f = [], c = 0, d = e.length; d > c; c++) b = e[c], g.call(this.all, b) < 0 ? (this.boxes.push(b), this.all.push(b), this.stopped || this.disabled() ? this.resetStyle() : this.applyStyle(b, !0), f.push(this.scrolled = !0)) : f.push(void 0);
+//                     return f
+//                 }
+//             }, e.prototype.show = function(a) {
+//                 return this.applyStyle(a), a.className = "" + a.className + " " + this.config.animateClass, null != this.config.callback ? this.config.callback(a) : void 0
+//             }, e.prototype.applyStyle = function(a, b) {
+//                 var c, d, e;
+//                 return d = a.getAttribute("data-wow-duration"), c = a.getAttribute("data-wow-delay"), e = a.getAttribute("data-wow-iteration"), this.animate(function(f) {
+//                     return function() {
+//                         return f.customStyle(a, b, d, c, e)
+//                     }
+//                 }(this))
+//             }, e.prototype.animate = function() {
+//                 return "requestAnimationFrame" in window ? function(a) {
+//                         return window.requestAnimationFrame(a)
+//                     } : function(a) {
+//                         return a()
+//                     }
+//             }(), e.prototype.resetStyle = function() {
+//                 var a, b, c, d, e;
+//                 for (d = this.boxes, e = [], b = 0, c = d.length; c > b; b++) a = d[b], e.push(a.style.visibility = "visible");
+//                 return e
+//             }, e.prototype.customStyle = function(a, b, c, d, e) {
+//                 return b && this.cacheAnimationName(a), a.style.visibility = b ? "hidden" : "visible", c && this.vendorSet(a.style, {
+//                     animationDuration: c
+//                 }), d && this.vendorSet(a.style, {
+//                     animationDelay: d
+//                 }), e && this.vendorSet(a.style, {
+//                     animationIterationCount: e
+//                 }), this.vendorSet(a.style, {
+//                     animationName: b ? "none" : this.cachedAnimationName(a)
+//                 }), a
+//             }, e.prototype.vendors = ["moz", "webkit"], e.prototype.vendorSet = function(a, b) {
+//                 var c, d, e, f;
+//                 f = [];
+//                 for (c in b) d = b[c], a["" + c] = d, f.push(function() {
+//                     var b, f, g, h;
+//                     for (g = this.vendors, h = [], b = 0, f = g.length; f > b; b++) e = g[b], h.push(a["" + e + c.charAt(0).toUpperCase() + c.substr(1)] = d);
+//                     return h
+//                 }.call(this));
+//                 return f
+//             }, e.prototype.vendorCSS = function(a, b) {
+//                 var c, e, f, g, h, i;
+//                 for (e = d(a), c = e.getPropertyCSSValue(b), i = this.vendors, g = 0, h = i.length; h > g; g++) f = i[g], c = c || e.getPropertyCSSValue("-" + f + "-" + b);
+//                 return c
+//             }, e.prototype.animationName = function(a) {
+//                 var b;
+//                 try {
+//                     b = this.vendorCSS(a, "animation-name").cssText
+//                 } catch (c) {
+//                     b = d(a).getPropertyValue("animation-name")
+//                 }
+//                 return "none" === b ? "" : b
+//             }, e.prototype.cacheAnimationName = function(a) {
+//                 return this.animationNameCache.set(a, this.animationName(a))
+//             }, e.prototype.cachedAnimationName = function(a) {
+//                 return this.animationNameCache.get(a)
+//             }, e.prototype.scrollHandler = function() {
+//                 return this.scrolled = !0
+//             }, e.prototype.scrollCallback = function() {
+//                 var a;
+//                 return !this.scrolled || (this.scrolled = !1, this.boxes = function() {
+//                     var b, c, d, e;
+//                     for (d = this.boxes, e = [], b = 0, c = d.length; c > b; b++) a = d[b], a && (this.isVisible(a) ? this.show(a) : e.push(a));
+//                     return e
+//                 }.call(this), this.boxes.length || this.config.live) ? void 0 : this.stop()
+//             }, e.prototype.offsetTop = function(a) {
+//                 for (var b; void 0 === a.offsetTop;) a = a.parentNode;
+//                 for (b = a.offsetTop; a = a.offsetParent;) b += a.offsetTop;
+//                 return b
+//             }, e.prototype.isVisible = function(a) {
+//                 var b, c, d, e, f;
+//                 return c = a.getAttribute("data-wow-offset") || this.config.offset, f = window.pageYOffset, e = f + Math.min(this.element.clientHeight, this.util().innerHeight()) - c, d = this.offsetTop(a), b = d + a.clientHeight, e >= d && b >= f
+//             }, e.prototype.util = function() {
+//                 return null != this._util ? this._util : this._util = new b
+//             }, e.prototype.disabled = function() {
+//                 return !this.config.mobile && this.util().isMobile(navigator.userAgent)
+//             }, e
+//         }()
+//     }.call(this), window.Modernizr = function(a, b, c) {
+//     function d(a) {
+//         q.cssText = a
+//     }
+//
+//     function f(a, b) {
+//         return typeof a === b
+//     }
+//
+//     function g(a, b) {
+//         return !!~("" + a).indexOf(b)
+//     }
+//
+//     function h(a, b) {
+//         for (var d in a) {
+//             var e = a[d];
+//             if (!g(e, "-") && q[e] !== c) return "pfx" != b || e
+//         }
+//         return !1
+//     }
+//
+//     function i(a, b, d) {
+//         for (var e in a) {
+//             var g = b[a[e]];
+//             if (g !== c) return d === !1 ? a[e] : f(g, "function") ? g.bind(d || b) : g
+//         }
+//         return !1
+//     }
+//
+//     function j(a, b, c) {
+//         var d = a.charAt(0).toUpperCase() + a.slice(1),
+//             e = (a + " " + v.join(d + " ") + d).split(" ");
+//         return f(b, "string") || f(b, "undefined") ? h(e, b) : (e = (a + " " + w.join(d + " ") + d).split(" "), i(e, b, c))
+//     }
+//     var r, C, G, k = "2.7.1",
+//         l = {},
+//         m = !0,
+//         n = b.documentElement,
+//         o = "modernizr",
+//         p = b.createElement(o),
+//         q = p.style,
+//         t = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")),
+//         u = "Webkit Moz O ms",
+//         v = u.split(" "),
+//         w = u.toLowerCase().split(" "),
+//         x = {},
+//         A = [],
+//         B = A.slice,
+//         D = function(a, c, d, e) {
+//             var f, g, h, i, j = b.createElement("div"),
+//                 k = b.body,
+//                 l = k || b.createElement("body");
+//             if (parseInt(d, 10))
+//                 for (; d--;) h = b.createElement("div"), h.id = e ? e[d] : o + (d + 1), j.appendChild(h);
+//             return f = ["&#173;", '<style id="s', o, '">', a, "</style>"].join(""), j.id = o, (k ? j : l).innerHTML += f, l.appendChild(j), k || (l.style.background = "", l.style.overflow = "hidden", i = n.style.overflow, n.style.overflow = "hidden", n.appendChild(l)), g = c(j, a), k ? j.parentNode.removeChild(j) : (l.parentNode.removeChild(l), n.style.overflow = i), !!g
+//         },
+//         E = function() {
+//             function a(a, e) {
+//                 e = e || b.createElement(d[a] || "div"), a = "on" + a;
+//                 var g = a in e;
+//                 return g || (e.setAttribute || (e = b.createElement("div")), e.setAttribute && e.removeAttribute && (e.setAttribute(a, ""), g = f(e[a], "function"), f(e[a], "undefined") || (e[a] = c), e.removeAttribute(a))), e = null, g
+//             }
+//             var d = {
+//                 select: "input",
+//                 change: "input",
+//                 submit: "form",
+//                 reset: "form",
+//                 error: "img",
+//                 load: "img",
+//                 abort: "img"
+//             };
+//             return a
+//         }(),
+//         F = {}.hasOwnProperty;
+//     G = f(F, "undefined") || f(F.call, "undefined") ? function(a, b) {
+//             return b in a && f(a.constructor.prototype[b], "undefined")
+//         } : function(a, b) {
+//             return F.call(a, b)
+//         }, Function.prototype.bind || (Function.prototype.bind = function(a) {
+//         var b = this;
+//         if ("function" != typeof b) throw new TypeError;
+//         var c = B.call(arguments, 1),
+//             d = function() {
+//                 if (this instanceof d) {
+//                     var e = function() {};
+//                     e.prototype = b.prototype;
+//                     var f = new e,
+//                         g = b.apply(f, c.concat(B.call(arguments)));
+//                     return Object(g) === g ? g : f
+//                 }
+//                 return b.apply(a, c.concat(B.call(arguments)))
+//             };
+//         return d
+//     }), x.touch = function() {
+//         var c;
+//         return "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : D(["@media (", t.join("touch-enabled),("), o, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function(a) {
+//                 c = 9 === a.offsetTop
+//             }), c
+//     }, x.csstransforms3d = function() {
+//         var a = !!j("perspective");
+//         return a && "webkitPerspective" in n.style && D("@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}", function(b, c) {
+//             a = 9 === b.offsetLeft && 3 === b.offsetHeight
+//         }), a
+//     }, x.csstransitions = function() {
+//         return j("transition")
+//     }, x.video = function() {
+//         var a = b.createElement("video"),
+//             c = !1;
+//         try {
+//             (c = !!a.canPlayType) && (c = new Boolean(c), c.ogg = a.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ""), c.h264 = a.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, ""), c.webm = a.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, ""))
+//         } catch (a) {}
+//         return c
+//     };
+//     for (var H in x) G(x, H) && (C = H.toLowerCase(), l[C] = x[H](), A.push((l[C] ? "" : "no-") + C));
+//     return l.addTest = function(a, b) {
+//         if ("object" == typeof a)
+//             for (var d in a) G(a, d) && l.addTest(d, a[d]);
+//         else {
+//             if (a = a.toLowerCase(), l[a] !== c) return l;
+//             b = "function" == typeof b ? b() : b, "undefined" != typeof m && m && (n.className += " " + (b ? "" : "no-") + a), l[a] = b
+//         }
+//         return l
+//     }, d(""), p = r = null,
+//         function(a, b) {
+//             function c(a, b) {
+//                 var c = a.createElement("p"),
+//                     d = a.getElementsByTagName("head")[0] || a.documentElement;
+//                 return c.innerHTML = "x<style>" + b + "</style>", d.insertBefore(c.lastChild, d.firstChild)
+//             }
+//
+//             function d() {
+//                 var a = s.elements;
+//                 return "string" == typeof a ? a.split(" ") : a
+//             }
+//
+//             function e(a) {
+//                 var b = q[a[o]];
+//                 return b || (b = {}, p++, a[o] = p, q[p] = b), b
+//             }
+//
+//             function f(a, c, d) {
+//                 if (c || (c = b), r) return c.createElement(a);
+//                 d || (d = e(c));
+//                 var f;
+//                 return f = d.cache[a] ? d.cache[a].cloneNode() : m.test(a) ? (d.cache[a] = d.createElem(a)).cloneNode() : d.createElem(a), !f.canHaveChildren || l.test(a) || f.tagUrn ? f : d.frag.appendChild(f)
+//             }
+//
+//             function g(a, c) {
+//                 if (a || (a = b), r) return a.createDocumentFragment();
+//                 c = c || e(a);
+//                 for (var f = c.frag.cloneNode(), g = 0, h = d(), i = h.length; g < i; g++) f.createElement(h[g]);
+//                 return f
+//             }
+//
+//             function h(a, b) {
+//                 b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function(c) {
+//                     return s.shivMethods ? f(c, a, b) : b.createElem(c)
+//                 }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + d().join().replace(/[\w\-]+/g, function(a) {
+//                         return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'
+//                     }) + ");return n}")(s, b.frag)
+//             }
+//
+//             function i(a) {
+//                 a || (a = b);
+//                 var d = e(a);
+//                 return s.shivCSS && !n && !d.hasCSS && (d.hasCSS = !!c(a, "article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")), r || h(a, d), a
+//             }
+//             var n, r, j = "3.7.0",
+//                 k = a.html5 || {},
+//                 l = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,
+//                 m = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,
+//                 o = "_html5shiv",
+//                 p = 0,
+//                 q = {};
+//             ! function() {
+//                 try {
+//                     var a = b.createElement("a");
+//                     a.innerHTML = "<xyz></xyz>", n = "hidden" in a, r = 1 == a.childNodes.length || function() {
+//                             b.createElement("a");
+//                             var a = b.createDocumentFragment();
+//                             return "undefined" == typeof a.cloneNode || "undefined" == typeof a.createDocumentFragment || "undefined" == typeof a.createElement
+//                         }()
+//                 } catch (a) {
+//                     n = !0, r = !0
+//                 }
+//             }();
+//             var s = {
+//                 elements: k.elements || "abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video",
+//                 version: j,
+//                 shivCSS: k.shivCSS !== !1,
+//                 supportsUnknownElements: r,
+//                 shivMethods: k.shivMethods !== !1,
+//                 type: "default",
+//                 shivDocument: i,
+//                 createElement: f,
+//                 createDocumentFragment: g
+//             };
+//             a.html5 = s, i(b)
+//         }(this, b), l._version = k, l._prefixes = t, l._domPrefixes = w, l._cssomPrefixes = v, l.hasEvent = E, l.testProp = function(a) {
+//         return h([a])
+//     }, l.testAllProps = j, l.testStyles = D, l.prefixed = function(a, b, c) {
+//         return b ? j(a, b, c) : j(a, "pfx")
+//     }, n.className = n.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (m ? " js " + A.join(" ") : ""), l
+// }(this, this.document),
+//     function(a, b, c) {
+//         function d(a) {
+//             return "[object Function]" == o.call(a)
+//         }
+//
+//         function e(a) {
+//             return "string" == typeof a
+//         }
+//
+//         function f() {}
+//
+//         function g(a) {
+//             return !a || "loaded" == a || "complete" == a || "uninitialized" == a
+//         }
+//
+//         function h() {
+//             var a = p.shift();
+//             q = 1, a ? a.t ? m(function() {
+//                         ("c" == a.t ? B.injectCss : B.injectJs)(a.s, 0, a.a, a.x, a.e, 1)
+//                     }, 0) : (a(), h()) : q = 0
+//         }
+//
+//         function i(a, c, d, e, f, i, j) {
+//             function k(b) {
+//                 if (!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
+//                     "img" != a && m(function() {
+//                         t.removeChild(l)
+//                     }, 50);
+//                     for (var d in y[c]) y[c].hasOwnProperty(d) && y[c][d].onload()
+//                 }
+//             }
+//             var j = j || B.errorTimeout,
+//                 l = b.createElement(a),
+//                 o = 0,
+//                 r = 0,
+//                 u = {
+//                     t: d,
+//                     s: c,
+//                     e: f,
+//                     a: i,
+//                     x: j
+//                 };
+//             1 === y[c] && (r = 1, y[c] = []), "object" == a ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function() {
+//                 k.call(this, r)
+//             }, p.splice(e, 0, u), "img" != a && (r || 2 === y[c] ? (t.insertBefore(l, s ? null : n), m(k, j)) : y[c].push(l))
+//         }
+//
+//         function j(a, b, c, d, f) {
+//             return q = 0, b = b || "j", e(a) ? i("c" == b ? v : u, a, b, this.i++, c, d, f) : (p.splice(this.i++, 0, a), 1 == p.length && h()), this
+//         }
+//
+//         function k() {
+//             var a = B;
+//             return a.loader = {
+//                 load: j,
+//                 i: 0
+//             }, a
+//         }
+//         var A, B, l = b.documentElement,
+//             m = a.setTimeout,
+//             n = b.getElementsByTagName("script")[0],
+//             o = {}.toString,
+//             p = [],
+//             q = 0,
+//             r = "MozAppearance" in l.style,
+//             s = r && !!b.createRange().compareNode,
+//             t = s ? l : n.parentNode,
+//             l = a.opera && "[object Opera]" == o.call(a.opera),
+//             l = !!b.attachEvent && !l,
+//             u = r ? "object" : l ? "script" : "img",
+//             v = l ? "script" : u,
+//             w = Array.isArray || function(a) {
+//                     return "[object Array]" == o.call(a)
+//                 },
+//             x = [],
+//             y = {},
+//             z = {
+//                 timeout: function(a, b) {
+//                     return b.length && (a.timeout = b[0]), a
+//                 }
+//             };
+//         B = function(a) {
+//             function b(a) {
+//                 var e, f, g, a = a.split("!"),
+//                     b = x.length,
+//                     c = a.pop(),
+//                     d = a.length,
+//                     c = {
+//                         url: c,
+//                         origUrl: c,
+//                         prefixes: a
+//                     };
+//                 for (f = 0; f < d; f++) g = a[f].split("="), (e = z[g.shift()]) && (c = e(c, g));
+//                 for (f = 0; f < b; f++) c = x[f](c);
+//                 return c
+//             }
+//
+//             function g(a, e, f, g, h) {
+//                 var i = b(a),
+//                     j = i.autoCallback;
+//                 i.url.split(".").pop().split("?").shift(), i.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]]), i.instead ? i.instead(a, e, f, g, h) : (y[i.url] ? i.noexec = !0 : y[i.url] = 1, f.load(i.url, i.forceCSS || !i.forceJS && "css" == i.url.split(".").pop().split("?").shift() ? "c" : c, i.noexec, i.attrs, i.timeout), (d(e) || d(j)) && f.load(function() {
+//                         k(), e && e(i.origUrl, h, g), j && j(i.origUrl, h, g), y[i.url] = 2
+//                     })))
+//             }
+//
+//             function h(a, b) {
+//                 function c(a, c) {
+//                     if (a) {
+//                         if (e(a)) c || (j = function() {
+//                             var a = [].slice.call(arguments);
+//                             k.apply(this, a), l()
+//                         }), g(a, j, b, 0, h);
+//                         else if (Object(a) === a)
+//                             for (n in m = function() {
+//                                 var c, b = 0;
+//                                 for (c in a) a.hasOwnProperty(c) && b++;
+//                                 return b
+//                             }(), a) a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
+//                                     var a = [].slice.call(arguments);
+//                                     k.apply(this, a), l()
+//                                 } : j[n] = function(a) {
+//                                     return function() {
+//                                         var b = [].slice.call(arguments);
+//                                         a && a.apply(this, b), l()
+//                                     }
+//                                 }(k[n])), g(a[n], j, b, n, h))
+//                     } else !c && l()
+//                 }
+//                 var m, n, h = !!a.test,
+//                     i = a.load || a.both,
+//                     j = a.callback || f,
+//                     k = j,
+//                     l = a.complete || f;
+//                 c(h ? a.yep : a.nope, !!i), i && c(i)
+//             }
+//             var i, j, l = this.yepnope.loader;
+//             if (e(a)) g(a, 0, l, 0);
+//             else if (w(a))
+//                 for (i = 0; i < a.length; i++) j = a[i], e(j) ? g(j, 0, l, 0) : w(j) ? B(j) : Object(j) === j && h(j, l);
+//             else Object(a) === a && h(a, l)
+//         }, B.addPrefix = function(a, b) {
+//             z[a] = b
+//         }, B.addFilter = function(a) {
+//             x.push(a)
+//         }, B.errorTimeout = 1e4, null == b.readyState && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
+//             b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
+//         }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
+//             var l, o, k = b.createElement("script"),
+//                 e = e || B.errorTimeout;
+//             k.src = a;
+//             for (o in d) k.setAttribute(o, d[o]);
+//             c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
+//                 !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
+//             }, m(function() {
+//                 l || (l = 1, c(1))
+//             }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
+//         }, a.yepnope.injectCss = function(a, c, d, e, g, i) {
+//             var j, e = b.createElement("link"),
+//                 c = i ? h : c || f;
+//             e.href = a, e.rel = "stylesheet", e.type = "text/css";
+//             for (j in d) e.setAttribute(j, d[j]);
+//             g || (n.parentNode.insertBefore(e, n), m(c, 0))
+//         }
+//     }(this, document), Modernizr.load = function() {
+//     yepnope.apply(window, [].slice.call(arguments, 0))
+// };
